@@ -13,7 +13,7 @@ post_class: post-template
 
 <main class="content" role="main">
 
-    <article class="post">
+    <article class="post show-article ">
 
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
@@ -71,13 +71,16 @@ post_class: post-template
                     <h4> {{ site.author }} </h4>
                     <!-- Author Bio -->
                     <p>
-                        Here goes the author description. You might want to place some links too in here
+                        Táo còn xanh - Ruby
+                    </p>
+                    <p>
+                        Nếu đã ước mơ sao không ước mơ thật lớn.
                     </p>
                 </section>
             {% endif %}
 
             <!-- Share links section -->
-            {% include share.html %}
+            <!-- {% include share.html %} -->
 
             <!-- Disqus comments -->
             {% if page.disqus %}

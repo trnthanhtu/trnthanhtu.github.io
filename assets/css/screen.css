@@ -453,7 +453,7 @@ margin on the iframe, cause it breaks stuff. */
 .inner {
     position: relative;
     width: 80%;
-    max-width: 710px;
+    /*max-width: 710px;*/
     margin: 0 auto;
 }
 
@@ -724,7 +724,9 @@ margin on the iframe, cause it breaks stuff. */
     word-break: break-word;
     hyphens: auto;
 }
-
+.show-article {
+    max-width: 900px;
+}
 /* Add a little circle in the middle of the border-bottom on our .post
    just for the lolz and stylepoints. */
 .post:after {
