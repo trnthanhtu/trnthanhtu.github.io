@@ -37,7 +37,7 @@ irb(main):002:0> true.frozen?
 irb(main):003:0> :ruby.frozen?  
 => true  
 ```
-(Thử tưởng tượng nó ko được freeze thì thật điên loạn. 1 có thể gán bằng 2 hay true có thể là false. Oh that crazytown) 
+(Thử tưởng tượng nó ko được freeze thì thật điên loạn. 1 có thể gán bằng 2 hay true có thể là false. Oh that's crazytown) 
 
 ### b. Unfrozen trong vô vọng.
 
