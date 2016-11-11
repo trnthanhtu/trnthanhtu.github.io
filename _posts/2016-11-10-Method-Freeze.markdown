@@ -18,8 +18,8 @@ Vậy đấy. Dùng method "freeze" để đóng băng object nào đó.
 Và dùng method "frozen?" để kiểm tra xem object đã đóng băng hay chưa.
 
 ## 2. Các vấn đề cần nắm rõ
-Để hiểu vấn đề thì phải đào sâu deep.  
-### a. Các kiểu dữ liệu được mặc định frozen.  
+
+### a. Các kiểu dữ liệu mặc định được freeze.
 
 Trong Ruby có các kiểu dữ liệu mặc định là  
    **- Boolean  
@@ -83,8 +83,7 @@ bf.freeze #=> NoMethodError: undefined method `freeze' for BasicFoo
 Điều này xảy ra là vì: Method **freeze** chỉ được *định nghĩa* ở class Object.
 
 ### e. Không có deep freeze 
-Khi bạn freeze một đối tượng thì có nghĩa là đối tượng đó không được **Modify**.
-
+Khi bạn freeze một đối tượng thì có nghĩa là đối tượng đó không được **Modify**.  
 Với object có cấu trúc là  **Array** hay **Hash** thì không cho phép **Modify** chính nó nhưng vẫn có thể **modify** phần tử chứa trong nó.
 (Thật quái phải không?).  
 Bạn có thể kiểm tra bằng một ví dụ sau:  
@@ -116,8 +115,8 @@ CONSTANT = ["a", "b", "c"].map(&:freeze)
 => ["a", "b", "c"]
 CONSTANT[0] << 'd'
 RuntimeError: can't modify frozen String
-
 ``` 
+
 ### f. Hash[key].frozen? #=> true
 
 **Key** của các phần tử trong **Hash** được mặc định là freeze. Điều này có thể lý giải đơn giản hoá như sau:  
