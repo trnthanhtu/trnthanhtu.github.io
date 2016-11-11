@@ -3,9 +3,9 @@ layout: post
 title:  "Freeze trong ruby"
 date:   2016-11-10 10:40:00
 ---
-Bài viết đầu tiên về nàng ma thuật của nàng Elsa  
+Bài viết đầu tiên về ma thuật của nàng Elsa.  
 
-## 1 Tổng quan. 
+## 1. Tổng quan. 
    Tôi có một object. Tôi muốn đóng băng nó
 
    Object.freeze 
@@ -19,7 +19,7 @@ Và dùng method "frozen?" để kiểm tra xem object đã đóng băng hay ch�
 
 ## 2. Các vấn đề cần nắm rõ
 Để hiểu vấn đề thì phải đào sâu deep.  
-### a.Các kiểu dữ liệu được mặc định frozen
+### a. Các kiểu dữ liệu được mặc định frozen.
 Trong Ruby có các kiểu dữ liệu mặc định là  
    **- Boolean  
      - Fixnum. Bignum, Float  
@@ -61,7 +61,7 @@ Ngược lại với `upcase`: nó sẽ trả về một đối tượng mới c
 
 (*Mặc khác để xác định một method là immutable hay ko thì có thể dựa vào việc check object_id*) 
 
-### c. Freeze chỉ có tác động lên object chứ không phải variable 
+### c. Freeze chỉ có tác động lên object chứ không phải variable .
 Ví dụ  
 
 ```
@@ -73,7 +73,7 @@ Ví dụ
  puts a #=> "Assign new string"
 
 ```
-### d. Không dùng cho  classes được kế thừa từ BasicObject
+### d. Không dùng cho  classes được kế thừa từ BasicObject.
 ```
 class BasicFoo < BasicObject; end
 bf = BasicFoo.new
