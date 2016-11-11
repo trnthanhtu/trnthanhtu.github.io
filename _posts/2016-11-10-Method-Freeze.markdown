@@ -19,7 +19,8 @@ Và dùng method "frozen?" để kiểm tra xem object đã đóng băng hay ch�
 
 ## 2. Các vấn đề cần nắm rõ
 Để hiểu vấn đề thì phải đào sâu deep.  
-### a. Các kiểu dữ liệu được mặc định frozen.
+### a. Các kiểu dữ liệu được mặc định frozen.  
+
 Trong Ruby có các kiểu dữ liệu mặc định là  
    **- Boolean  
      - Fixnum. Bignum, Float  
