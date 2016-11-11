@@ -73,13 +73,16 @@ Ví dụ
  
  puts a #=> "Assign new string"
 
-```
+```  
+
 ### d. Không dùng cho  classes được kế thừa từ BasicObject.
+
 ```
 class BasicFoo < BasicObject; end
 bf = BasicFoo.new
 bf.freeze #=> NoMethodError: undefined method `freeze' for BasicFoo
-```
+```  
+
 Điều này xảy ra là vì: Method **freeze** chỉ được *định nghĩa* ở class Object.
 
 ### e. Không có deep freeze 
