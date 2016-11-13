@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Có thể bạn đã biết: Symbol"
-date:   2016-11-13 13:20:00
+date:   2016-11-13 00:00:00
 ---
 
 Có thể bạn đã biết: Symbol
