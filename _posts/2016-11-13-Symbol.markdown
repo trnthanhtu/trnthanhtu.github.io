@@ -26,7 +26,8 @@ date:   2016-11-13 00:00:00
    *Ví dụ*:  
      - **:name**: *The Thing called 'name'*  
      - **hash[:key]**: *The Thing called key from the Hash*  
-     - **object.send(:name_method)**: *send the message called 'name_method' to the object*
+     - **object.send(:name_method)**: *send the message called 'name_method' to the object*  
+
 - Cách kiểu convert về *symbol*  
   + string -> symbol: `to_sym`
   + Array string -> Array symbol:  
