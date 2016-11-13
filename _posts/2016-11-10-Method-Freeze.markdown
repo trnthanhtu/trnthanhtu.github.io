@@ -3,9 +3,9 @@ layout: post
 title:  "Freeze trong ruby"
 date:   2016-11-10 10:40:00
 ---
-Bài viết đầu tiên về nàng ma thuật của nàng Elsa  
+Bài viết đầu tiên về ma thuật của nàng Elsa.  
 
-## 1 Tổng quan. 
+## 1. Tổng quan. 
    Tôi có một object. Tôi muốn đóng băng nó
 
    Object.freeze 
@@ -18,8 +18,9 @@ Vậy đấy. Dùng method "freeze" để đóng băng object nào đó.
 Và dùng method "frozen?" để kiểm tra xem object đã đóng băng hay chưa.
 
 ## 2. Các vấn đề cần nắm rõ
-Để hiểu vấn đề thì phải đào sâu deep.  
-### a.Các kiểu dữ liệu được mặc định frozen
+
+### a. Các kiểu dữ liệu mặc định được freeze.
+
 Trong Ruby có các kiểu dữ liệu mặc định là  
    **- Boolean  
      - Fixnum. Bignum, Float  
@@ -36,7 +37,7 @@ irb(main):002:0> true.frozen?
 irb(main):003:0> :ruby.frozen?  
 => true  
 ```
-(Thử tưởng tượng nó ko được freeze thì thật điên loạn. 1 có thể gán bằng 2 hay true có thể là false. Oh that crazytown) 
+(Thử tưởng tượng nó ko được freeze thì thật điên loạn. 1 có thể gán bằng 2 hay true có thể là false. Oh that's crazytown) 
 
 ### b. Unfrozen trong vô vọng.
 
@@ -61,7 +62,7 @@ Ngược lại với `upcase`: nó sẽ trả về một đối tượng mới c
 
 (*Mặc khác để xác định một method là immutable hay ko thì có thể dựa vào việc check object_id*) 
 
-### c. Freeze chỉ có tác động lên object chứ không phải variable 
+### c. Freeze chỉ có tác động lên object chứ không phải variable .
 Ví dụ  
 
 ```
@@ -72,18 +73,20 @@ Ví dụ
  
  puts a #=> "Assign new string"
 
-```
-### d. Không dùng cho  classes được kế thừa từ BasicObject
+```  
+
+### d. Không dùng cho  classes được kế thừa từ BasicObject.
+
 ```
 class BasicFoo < BasicObject; end
 bf = BasicFoo.new
 bf.freeze #=> NoMethodError: undefined method `freeze' for BasicFoo
-```
+```  
+
 Điều này xảy ra là vì: Method **freeze** chỉ được *định nghĩa* ở class Object.
 
 ### e. Không có deep freeze 
-Khi bạn freeze một đối tượng thì có nghĩa là đối tượng đó không được **Modify**.
-
+Khi bạn freeze một đối tượng thì có nghĩa là đối tượng đó không được **Modify**.  
 Với object có cấu trúc là  **Array** hay **Hash** thì không cho phép **Modify** chính nó nhưng vẫn có thể **modify** phần tử chứa trong nó.
 (Thật quái phải không?).  
 Bạn có thể kiểm tra bằng một ví dụ sau:  
@@ -115,8 +118,8 @@ CONSTANT = ["a", "b", "c"].map(&:freeze)
 => ["a", "b", "c"]
 CONSTANT[0] << 'd'
 RuntimeError: can't modify frozen String
-
 ``` 
+
 ### f. Hash[key].frozen? #=> true
 
 **Key** của các phần tử trong **Hash** được mặc định là freeze. Điều này có thể lý giải đơn giản hoá như sau:  
