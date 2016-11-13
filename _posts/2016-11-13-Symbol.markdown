@@ -4,15 +4,12 @@ title:  "Có thể bạn đã biết: Symbol"
 date:   2016-11-13 00:00:00
 ---
 
-Có thể bạn đã biết: Symbol
----
-
    Symbol là một kiểu dữ liệu thú vị nhất trong Ruby. Được sử dụng rộng rãi trong mỗi dự án, mỗi thư viện viết bằng ruby.Thế nhưng đôi lúc sử dụng nó như thế nào cho hiệu quả đều gây bối rối cho Rubylist.
 
---
+---
 
 ## 1. Sơ sơ thông tin
- - Cách nhận dạng: là một name string phía sau dấu : (colon).
+ - Cách nhận dạng: là một name string phía sau dấu ":" (colon).
  - Cách viết:
    + ":" + snake_case.
    Kiểu này thông dụng nhất Nhưng nó chỉ dùng cho trường hợp tên là một chuổi  ký tự alaphabet.
@@ -20,62 +17,63 @@ Có thể bạn đã biết: Symbol
     => Lưu ý: Chỉ chấp nhận ký tự bắt đầu là một chữ cái hay dấu "_".
  
   + ":" + "string chứa ký tự đặc biệt".
- Đôi khi muốn nổi loạn đặt những cái tên hổng giống ai với những ký tự đặc biệt (**ngoại trừ dấu '#'**) thì bạn dùng cách này. Và luôn nhớ **Đặt string trong cặp ""**.
- 
-    Ví dụ: `:"12sdsd"`, `:")$343"`... 
+Đôi khi muốn nổi loạn đặt những cái tên hổng giống ai với những ký tự đặc biệt (**ngoại trừ dấu '#'**) thì bạn dùng cách này. Và luôn nhớ **Đặt string trong cặp ""**.
+  Ví dụ: `:"12sdsd"`, `:")$343"`... 
  - Cách đọc: 
  
  Tiếng anh Symbol được đọc là **"The thing callled"**.
    
    *Ví dụ*:  
-     - **:name**: *The Thing called 'name'*
-     - **hash[:key]**: *The Thing called key from the Hash*
+     - **:name**: *The Thing called 'name'*  
+     - **hash[:key]**: *The Thing called key from the Hash*  
      - **object.send(:name_method)**: *send the message called 'name_method' to the object*
-- Cách kiểu convert về *symbol*
- - string -> symbol: `to_sym`
- - Array string -> Array symbol:  
+- Cách kiểu convert về *symbol*  
+  + string -> symbol: `to_sym`
+  + Array string -> Array symbol:  
    `['a', 'b'].map(&:to_sym)`
    
- Nếu là rails thì có những method covert hash['key'] => hash[:key]:  
-  - `symbolize_keys/symbolize_keys!`
-  - `deep_symbolize_keys/deep_symbolize_keys!` (nested hash)
+ Lưu ý: Nếu là rails thì có những method covert hash['key'] => hash[:key]:  
+  
+     `symbolize_keys/symbolize_keys!`
+     `deep_symbolize_keys/deep_symbolize_keys!` (nested hash)
 
-##2. Những vấn đề lưu ý
 
-###a. Symbol là string (ý là tương tự - sort of)
+## 2. Những vấn đề lưu ý
+
+### a. Symbol là string (ý là tương tự - sort of)
 Chúng chỉ khác nhau một điều quan trọng nhất là: Symbol là **bất biến** (immutable).
 
-  ```
-  puts "hello" << " world"
-  puts :hello << :" world" 
+```
+    puts "hello" << " world"
+    puts :hello << :" world" 
  
-  # => hello world
-  # => *.rb:4: undefined method `<<' for :hello:Symbol (NoMethodError)
-  ```
+    # => hello world
+    # => *.rb:4: undefined method `<<' for :hello:Symbol (NoMethodError)
+```
 
-###b. Perfomance giữa Symbol và String
+### b. Perfomance giữa Symbol và String
 
 Để hiểu rõ hơn về Perfomance thì ta xét 2 ví dụ sau: 
- 
-Trường hợp sử dụng string
 
-  ```
-    puts "text".object_id # "70191989027620"
-    puts "text".object_id # "70191988995800"
-  ```
+Trường hợp sử dụng string
+```ruby  
+puts "text".object_id # "70191989027620"
+puts "text".object_id # "70191988995800"
+```
+
 
 Mỗi lần gọi puts đó Ruby sẽ lần lượt các công việc sau
 
-- 1. Khởi tạo mới 1 string với giá trị  text
-- 2. Trình thông dịch của Ruby sẽ tìm vào vùng nhớ (memory) 1 chỗ để lưu trữ và giữ kết nối thông qua `object_id` của nó.
-- 3. String đó được truyền vào `puts` và output ra screen
-- 4. Trình thông dịch của Ruby sẽ thấy nó ko được sử dụng nữa (không được assignment vào một variable) thì sẽ đánh dấu tiêu hủy nó
-- 5. Quay lại bước 1 và lặp lại lần 2.
+- a. Khởi tạo mới 1 string với giá trị  text
+- b. Trình thông dịch của Ruby sẽ tìm vào vùng nhớ (memory) 1 chỗ để lưu trữ và giữ kết nối thông qua `object_id` của nó.
+- c. String đó được truyền vào `puts` và output ra screen
+- d. Trình thông dịch của Ruby sẽ thấy nó ko được sử dụng nữa (không được assignment vào một variable) thì sẽ đánh dấu tiêu hủy nó
+- e. Quay lại bước a và lặp lại lần 2.
 
 Khi đó `Ruby’s garbage collector` hay `GC` của ruby sẽ tiến hành quét và tìm những đối tượng đánh dấu để tiêu hủy nó
 Điều này lặp lại nhiều lần sẽ gây chậm tốc độ không đang có của chương trình. (Cái này liên quan tới module GC.)
 
-Nhưng nếu trường hợp là một symbol thì:
+Nhưng nếu trường hợp là một *symbol* thì:
 
 ```
   puts :text.object_id #=>269788
@@ -90,12 +88,12 @@ Do nếu dùng `symbol` sẽ có tốc độ nhanh hơn so với tring
 Symbol không chỉ lưu vào vùng nhớ head mà còn theo dõi thông qua (keep track of via) "a optimized Symbol directory"
 Bạn có thể kiểm tra bằng cách
 
-  puts Symbol.all_symbols.inspect #> một array symbol rất dài
+`puts Symbol.all_symbols.inspect #> một array symbol rất dài`
 
 Do đó, mỗi khi một symbol được khởi tạo, nó sẽ được `<<` vào trong `array` này.
 Khi bạn gọi một `symbol` ra dùng, Ruby sẽ kiểm tra `array` này trước, nếu có sẽ lấy ra sử dụng và ngược lại nó sẽ khởi tạo một symbol mới và puts vào array.
-(Đó là cách mà symbol tái sữ dụng lại khi bạn gọi lại symbol sau khi init)
-Ta có thể kiểm tra bằng cách
+(Đó là cách mà symbol tái sử dụng lại khi bạn gọi lại symbol sau khi init).
+Ta có thể kiểm tra bằng example sau:
 
 ```
 >> Symbol.all_symbols.collect{|sym| sym.to_s}.include?("new_symbol")
@@ -112,4 +110,4 @@ Ta có thể kiểm tra bằng cách
 Ví dụ : `Hash[:key]`,...  
 
 ---
-Đó là những điều mình rút, đọc, nghiệm các kiểu về Symbol để sử dụng nó sao cho hợp lý và hiệu quả
+Đó là những điều mình rút, đọc, nghiệm các kiểu về Symbol để sử dụng nó sao cho hợp lý và hiệu quả!
