@@ -11,6 +11,7 @@ Khi đọc các bài viết về refactor fat model, fat controller, thì có c�
 ---
 
 ## 1. Đặt vấn đề.
+
 Khi làm việc với Rails, bạn đã quá quen thuộc với cấu trúc MVC, và cách tổ chức code mở rộng với các thành phần như Job, validations,.. Bạn có thể chọn mở một trong các file trong source app để xem và biết chính xác nó làm gì.
 Trong quá trình phát triển app bạn muốn thêm những thứ mà không đến từ Rails , chính xác là những lib, module được xây dựng từ `Standand Ruby Core`. Đó chính xác là POROs.
 Ví dụ điển hình nhất là
