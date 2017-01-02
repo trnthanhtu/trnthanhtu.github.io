@@ -1,0 +1,138 @@
+---
+layout: post
+title:  "Salut. Je suis POROs - Hi. Iam POROs"
+date:   2017-01-02 00:00:00
+---
+
+Khi đọc các bài viết về refactor fat model, fat controller, thì có các solution như sử dụng Service Object,.. với thuật ngữ POROs - một thuật ngữ chưa nắm rõ lắm.
+
+POROs - Plain Old Ruby Objects : mình tạm dịch là "những đối tượng thuần túy của Ruby"
+
+---
+## 1. Đặt vấn đề.
+Khi làm việc với Rails, bạn đã quá quen thuộc với cấu trúc MVC, và cách tổ chức code mở rộng với các thành phần như Job, validations,.. Bạn có thể chọn mở một trong các file trong source app để xem và biết chính xác nó làm gì.
+Trong quá trình phát triển app bạn muốn thêm những thứ mà không đến từ Rails , chính xác là những lib, module được xây dựng từ `Standand Ruby Core`. Đó chính xác là POROs.
+Ví dụ điển hình nhất là
+
+```
+class NewClass
+end
+```
+
+## 2. POROs giúp bạn làm những gì.
+
+Lấy một ví dụ nhỏ:
+Có một action create của controller User có chức năng:
+  - check valid IP
+  - check valid "checked-button"
+  - Save db
+  - Add notice to admin
+  - Send mail
+
+Lúc đó ta sẽ có một controller như sau
+
+```
+class RegisterUserController < ApplicationController
+   def create
+          @user= User.new(params)
+          if @user.valid? && valid_ip
+             @user.save
+             @user.add_notice
+             send_mail
+          end
+    end
+ end
+```
+
+Nhìn sơ thì đoạn code trên thật đơn giản và có thể giải quyết vấn đề. Tuy nhiên trên lý thuyết thì nó đã vi phạm nguyên tắc `Single responsibility principle` hay "Thin controller" vì chứa quá nhiều logic.
+Lúc này ta sẽ refactory code dùng "Service Object"
+
+```
+class RegistrationService
+  def excute!(params)
+    user = User.new(params)
+    if user.valid? && valid_it(params[:param_ipư)
+      user.save!
+      after_registered_events(user)
+    end
+    user
+  end
+
+  private
+
+  def after_registered_events(user)
+    # do somthing here
+  end
+end
+
+class RegisterUserController < ApplicationController
+    def create
+     @user = RegistrationServer.new.excute!(user_params)
+    end
+end
+```
+
+Và bây giờ ta thấy controller trở nên rõ ràng và clear hơn chỉ gọi lớp ResigterUser để thực hiện chức năng create user.
+Vấn đề được đặt ra là nếu nhiều file POROs như thế thì ta quản lý như thế nào
+
+## 3. Tổ chức POROs trong Rails
+
+### a Đặt trong thư mục lib 
+- Trường ko có relation với các thành phần của Rails
+- Trường hợp này được sử dụng trong trường hợp module bạn viết ra ko có related với controller hay model, view thì bạn có thể để nó trong thư mục lib/
+
+Cấu trúc như sau
+
+```
+Project
+| - app/
+| - lib/
+|      - service/
+|          # all poros file
+
+```
+
+Tất nhiên phương pháp này có nhược điểm trong quá trình phát triển source:
+  - Nếu số lượng POROs quá lớn sẽ khó quản lý kiểu như liên tục nhồi nhét vào 1 cái túi
+  - Sẽ ko theo dõi được class này để làm gì được sử dụng ở đâu. (Mất đi tính thân thiện của Rails)
+
+### b. Namespace.
+  Namespace class and module được sử dụng hầu hết trong các gem và các chương trình Ruby
+Gỉa sử ta có một controller là users.
+- List ra tất cả các user.
+- Phân trang
+- Check phân quyền.
+- new
+- update
+- v.vv
+=> Mọi thứ nhồi nhéc vào trong 1 controller/index
+
+```
+class UserController < ApplicationController
+   def index
+    //code here
+    end
+
+    def new
+    end
+end
+```
+
+=> Di chuyển hết về một class module để “Thin controller".
+
+Tổ chức :
+
+```
+app
+   |-controllers
+        |- user_controller
+             |- user.rb
+        |-user_controller.rb
+
+```
+=> Ưu điểm dễ quản lý, đảm bảo được Thin controller.
+
+Tất nhiên có thể áp dụng cho cả model.
+
+---
+Trên đây là những tóm tắt về POROs và ứng dụng để cấu trúc dự án của bạn một cách hợp lý.
