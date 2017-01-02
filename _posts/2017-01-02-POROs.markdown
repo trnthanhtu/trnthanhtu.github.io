@@ -1,14 +1,15 @@
 ---
 layout: post
-title:  "Salut. Je suis POROs - Hi. Iam POROs"
+title:  "Salut. Je suis POROs - Hi. I am POROs"
 date:   2017-01-02 00:00:00
 ---
 
-Khi đọc các bài viết về refactor fat model, fat controller, thì có các solution như sử dụng Service Object,.. với thuật ngữ POROs - một thuật ngữ chưa nắm rõ lắm.
+Khi đọc các bài viết về refactor fat model, fat controller, thì có các solution như sử dụng Service Object,.. với thuật ngữ POROs - một thuật ngữ chưa nắm rõ lắm. Do đó phải tim hiểu nó thôi.
 
-POROs - Plain Old Ruby Objects : mình tạm dịch là "những đối tượng thuần túy của Ruby"
+**POROs - Plain Old Ruby Objects** : mình tạm dịch là "những đối tượng thuần túy của Ruby"
 
 ---
+
 ## 1. Đặt vấn đề.
 Khi làm việc với Rails, bạn đã quá quen thuộc với cấu trúc MVC, và cách tổ chức code mở rộng với các thành phần như Job, validations,.. Bạn có thể chọn mở một trong các file trong source app để xem và biết chính xác nó làm gì.
 Trong quá trình phát triển app bạn muốn thêm những thứ mà không đến từ Rails , chính xác là những lib, module được xây dựng từ `Standand Ruby Core`. Đó chính xác là POROs.
@@ -98,13 +99,15 @@ Tất nhiên phương pháp này có nhược điểm trong quá trình phát tr
 
 ### b. Namespace.
   Namespace class and module được sử dụng hầu hết trong các gem và các chương trình Ruby
-Gỉa sử ta có một controller là users.
-- List ra tất cả các user.
-- Phân trang
-- Check phân quyền.
-- new
-- update
-- v.vv
+Giả sử ta có một controller là users.
+
+ - List ra tất cả các user.
+ - Phân trang
+ - Check phân quyền.
+ - new
+ - update
+ - v.vv
+
 => Mọi thứ nhồi nhéc vào trong 1 controller/index
 
 ```
