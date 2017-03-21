@@ -20,14 +20,13 @@ class Project < ActiveRecord::Base
   private
   
   def send_email
-    // implement send email logic here
+    # implement send email logic here
   end
 
 end
 
 ```
 
-Có vấn đề gì với đoạn code trên không?
 Đợi đã, 1 cái `callback` thì ko sao nhưng với 10+ cái `callback` đc nhồi nhét vô trong model thì trông thật khó nhìn với hầm bà lằng cùng các `scope`, `validate`, `attributes`,... Cả một vấn đề đấy
 
 Phương án tách thành `module` nhỏ nhỏ rồi `include` các kiểu vào trong model chính.
@@ -42,7 +41,7 @@ Có cách nào hỗ trợ bởi Rails ko?
 - Là một feature của ActiveRecord
 - Là một cách để include các functionality không phải là **core concept** vào model
 - Là phương pháp để giữ cho `the actual data model` không bị  *cluttering up or obfuscate* bởi các functionality được thêm vào.
-- Được sử dụng khi có feature sau: logging, send notification alerts, send email (background job)
+- Được sử dụng với những feature sau: transaction logging, send notification, alerts, send email (background job)
 
 
 Examble: Refactor đoạn code ở trên
