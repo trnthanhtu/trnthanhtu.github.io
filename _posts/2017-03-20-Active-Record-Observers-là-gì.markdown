@@ -4,11 +4,11 @@ title:  "Active Record Observers là gì"
 date:   2017-03-20 00:00:00
 ---
 
-Bonus Features của **Active Record**.
-**Observers** là gì và khi nào dùng?
+Bonus Features của **Active Record**.  
 
----
+ **Observers** là gì và khi nào dùng?
 
+--- 
 **Đặt vấn đề**:
 
 Implement chức năng send email trong model Project tới user khi một project đc tạo ra.
@@ -29,10 +29,9 @@ end
 
 Đợi đã, 1 cái `callback` thì ko sao nhưng với 10+ cái `callback` đc nhồi nhét vô trong model thì trông thật khó nhìn với hầm bà lằng cùng các `scope`, `validate`, `attributes`,... Cả một vấn đề đấy
 
-Phương án tách thành `module` nhỏ nhỏ rồi `include` các kiểu vào trong model chính.
-=> Cũng được nhưng có vẻ thủ công quá.
+Phương án: Tách thành `module` nhỏ nhỏ rồi `include` các kiểu vào trong model chính.
 
-Có cách nào hỗ trợ bởi Rails ko?
+Câu hỏi đặt ra: Có cách nào hỗ trợ bởi Rails ko?
 
 ---
 
@@ -44,7 +43,7 @@ Có cách nào hỗ trợ bởi Rails ko?
 - Được sử dụng với những feature sau: transaction logging, send notification, alerts, send email (background job)
 
 
-Examble: Refactor đoạn code ở trên
+**Example:**  Refactor đoạn code ở trên
 
 ```
 # app/models/project.rb
