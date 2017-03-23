@@ -3,7 +3,10 @@ layout: post
 title:  "Distinct Include&Extend Require&L"
 date:   2017-03-23 00:00:00
 ---
-**Include** & **Extend**  
+
+Cách tiếp cận dễ hiểu nhất.
+
+**Include** & **Extend**  
 - Khi muốn cơ chế mix-in trong ruby thì bạn sử dụng Include và Extend.
 - Dùng để DIY code.
 - Khi có nhiều class muốn sử dụng chung một module.
