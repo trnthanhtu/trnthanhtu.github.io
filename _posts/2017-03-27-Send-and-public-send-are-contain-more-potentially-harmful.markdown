@@ -6,16 +6,16 @@ date:   2017-03-27 00:00:00
 
 Những thứ tiềm ẩn nguy hiểm tới chương trình của bạn khi dùng `send` và `public_send`.
 
-`send` : là gọi method của object
+`send` : là gọi method của object  
 `public_send`: chỉ `send` những public method
 
---
+---
 
 ### 1.Hãy xem xét nhữg ví dụ sau:
 
 **ví dụ 1:**
 
-Trong Kernel's module có method là `exit`. và mọi Object đều có thể gọi `Object.exit`.
+Trong Kernel's module có method là `exit`  và mọi Object đều có thể gọi `Object.exit`.
 
 Chuyện gì xảy ra nếu tau chạy lệnh ở dưới trong irb
 
@@ -41,7 +41,7 @@ end
  
 ```
 
-Chuyện gì xảy ra nếu ta truyền lên params[:sort] = 'destroy_all'
+Chuyện gì xảy ra nếu ta truyền lên `params[:sort] = 'destroy_all'
 
 Lúc đó sẽ thành 
 
@@ -70,7 +70,7 @@ Từ ví dụ 1, thay bởi public_send kết hợp với `instance_eval` (`inst
 
 - Nên sử dụng `public_send` thay vì sử dụng `send` bởi vì `public_send` chỉ call những public method
 
-- **Đừng tin những gì mà người dùng input vào**. Chỉ sử dụng `public_send` và `send` trong trường hợp **hardly code** hay bạn thật sự controll và **tin tưởng** những tên của method.
+- **Đừng tin những gì mà người dùng input vào**. Chỉ sử dụng `public_send` và `send` trong trường hợp **hardly code** hay bạn thật sự controll và **tin tưởng** những tên của method khi viết `metaprogramming` 
 
 - Sử dụng whitelist (kiểm tra các giá trị params được phép truyền vào)
 
@@ -94,8 +94,9 @@ class IndexController < ApplicationController
     end
 end
 
-```
-
+```  
+Trong đó:  
 `presence_in`: Trả về giá trị (recevier) nếu chúng được `include` trong list đối số hay là `nil`.
 (Ở đoạn code trên ta thêm xử lý so sánh nếu nil thì trả về giá trị `newest`)
 
+---
