@@ -3,7 +3,7 @@ description: Viết những gì mình thích. Lượm lặt những gì mình ng
 meta_description: "Viết những gì mình thích"
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 15
 baseurl: /
