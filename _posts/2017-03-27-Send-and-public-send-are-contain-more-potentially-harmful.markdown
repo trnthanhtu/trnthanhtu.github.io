@@ -15,7 +15,7 @@ Những thứ tiềm ẩn nguy hiểm tới chương trình của bạn khi dùn
 
 **ví dụ 1:**
 
-Trong Kernel's module có method là `exit`  và mọi Object đều có thể gọi `Object.exit`.
+Trong Kernel's module có method là `exit` và mọi Object đều có thể gọi `Object.exit`.
 
 Chuyện gì xảy ra nếu tau chạy lệnh ở dưới trong irb
 
@@ -25,8 +25,7 @@ Chuyện gì xảy ra nếu tau chạy lệnh ở dưới trong irb
 ```
 => Stop IRB!
 
-**ví dụ 2:**  
-
+**ví dụ 2:**
 ```
 class Foo < ActiveRecord::Base
  scope :newest -> { order(id: desc)}
@@ -41,7 +40,10 @@ end
  
 ```
 
-Chuyện gì xảy ra nếu ta truyền lên `params[:sort] = 'destroy_all'
+Chuyện gì xảy ra nếu ta truyền giá trị như sau:
+```
+params[:sort] = 'destroy_all'
+```
 
 Lúc đó sẽ thành 
 
@@ -58,9 +60,8 @@ Từ ví dụ 1, thay bởi public_send kết hợp với `instance_eval` (`inst
 
 
 ```
-# irb
+# ird
 1.public_send(:instance_eval, 'exit')
-
 ```
 => Stop IRB
 
