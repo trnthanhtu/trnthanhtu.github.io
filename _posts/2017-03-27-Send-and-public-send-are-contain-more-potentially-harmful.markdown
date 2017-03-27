@@ -21,15 +21,14 @@ Chuyện gì xảy ra nếu tau chạy lệnh ở dưới trong irb
 
 ```
   1.send(:exit)  
-
 ```
 => Stop IRB!
 
 **ví dụ 2:**
 ```
 class Foo < ActiveRecord::Base
- scope :newest -> { order(id: desc)}
- scope :oldest -> { order(id: asc)}
+ scope :newest -> { order(id: :desc)}
+ scope :oldest -> { order(id: :asc)}
 end
 
 class IndexController < ApplicationController
@@ -37,7 +36,6 @@ class IndexController < ApplicationController
     @foos = Foo.send(params[:sort])
   end
 end
- 
 ```
 
 Chuyện gì xảy ra nếu ta truyền giá trị như sau:
@@ -50,8 +48,7 @@ Lúc đó sẽ thành
 ```
 @foos = Foo.send(:destroy_all)
 
-#=> DELETE * FROM Foo
-
+#=> DELETE * FROM Foos
 ```
 
 **ví dụ 3:**
@@ -64,8 +61,6 @@ Từ ví dụ 1, thay bởi public_send kết hợp với `instance_eval` (`inst
 1.public_send(:instance_eval, 'exit')
 ```
 => Stop IRB
-
-
 
 ### 2. Làm thế nào để phòng tránh
 
@@ -94,10 +89,12 @@ class IndexController < ApplicationController
        params[:sort].presence_in(%w(newest oldest)) || :newest
     end
 end
-
 ```  
+
 Trong đó:  
 `presence_in`: Trả về giá trị (recevier) nếu chúng được `include` trong list đối số hay là `nil`.
 (Ở đoạn code trên ta thêm xử lý so sánh nếu nil thì trả về giá trị `newest`)
 
 ---
+
+**Stay safe**
