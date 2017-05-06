@@ -4,38 +4,38 @@ title:  "Form Object Pattern with gem Virtus"
 date:   2017-05-06 00:00:00
 ---
 
-`Form Object Pattern` được sử dụng lúc nào?
+**`Form Object Pattern`** được sử dụng lúc nào?
 
   - Khi cần phải  thực hiện việc create/update multiple ActiveRecord models trên cùng một form
   - Khi việc sử dụng `accepts_nested_attributes_for` trở nên phức tạp hoặc không muốn sử dụng
   - Tuân thủ nguyên tắc **"single responsibility principle"**
   - Thin Model (việc chứa quá nhiều logic trong một model để phục vụ việc tương tác với form là không cần thiết gây nên sự phức tạp)
 
- `Form Object Pattern` tương tự như `Service Object`. Nó là một lớp "layer" đặt giữa view và controller ( cũng như model) để thực hiện nhiệm vụ từ cả hai. Ví dụ:
+ **`Form Object Pattern`** tương tự như **`Service Object`**. Nó là một lớp "layer" đặt giữa view và controller ( cũng như model) để thực hiện nhiệm vụ từ cả hai. Ví dụ:
    - validate data
    - CRUD
    - notification
    - create nested attributes
-
+   - ...
+   
   Do đó việc sử dụng Form Object sẽ giữ cho C-M đơn giản.
 
-Trong bài viết này sẽ giới thiệu gem Virtus (Link: https://github.com/solnic/virtus)
+Trong bài viết này sẽ giới thiệu gem Virtus (Link: https://github.com/solnic/virtus).  
 Vì gem sẽ hỗ trợ ta thực hiện form object pattern đơn giản và nhanh hơn (bản chất thì vẫn như vậy)
 
-1. Bài toán 
+### 1.Bài toán 
 Có 2 model `User`  1-1 `Grade`. Trong đó Grade chứa thông tin `grade`(cấp bậc) `name`(tên lớp) của user.
 Hãy tạo một chức năng register cho user bao gồm cả việc input thông tin grade.
 
-2. Sử dụng Form Object
+### 2.Sử dụng Form Object
 
-Add gemfile
+#### a.Add gemfile
 
 ```
 #Gemfile
 gem virtus
 ```
-
-- Tạo mới 1 class extend Virtus để định nghĩa các thuộc tính và validate
+#### b.Tạo mới 1 class extend Virtus để định nghĩa các thuộc tính và validate
 
 + Đầu tiên là khởi tạo
 ```
@@ -46,7 +46,7 @@ class UserRegisterForm
 ```
 
 - Khai báo các attribute và type cần thiết.
-Ở đây ta khai báo thêm các attribute "ảo " như `confirm` để thực hiệc việc kiểm tra confirm checkbox
+Ở đây ta được phép khai báo thêm các attribute "ảo " như `confirm` để thực hiệc việc kiểm tra confirm checkbox
 
 ```
   attribute :firstname, String
@@ -86,7 +86,7 @@ class UserRegisterForm
 
 ```
 
-Lưu ý: Luôn sử dụng `transaction` khi thực hiện việc thay đổi nhiều model.
+**Lưu ý: Luôn sử dụng `transaction` khi thực hiện việc thay đổi nhiều model.**
 
 
 - Xử lý controller
@@ -144,10 +144,16 @@ end
 ```
 
 
-Như vậy Form Object UserRegisterForm chịu trách nhiệm nhận các input đầu vào từ form register và sau đó thực hiện confirm, validate và lưu data ở các model tương ứng.
+Như vậy `Form Object: UserRegisterForm` chịu trách nhiệm nhận các input đầu vào từ form register và sau đó thực hiện confirm, validate và lưu data ở các model tương ứng.  
 Nếu nhiều form, ta sẽ tạo nhiều Form Object tương ứng để xử lý mà không có đá động gì tới model gốc .
 
 
+---
+Ngoài ra còn có gem Reform : https://github.com/apotonick/reform
 
+---
+Bài viết tham khảo
+- https://medium.com/@ryakh/rails-form-objects-84b6849c886e
+- http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
 
 
