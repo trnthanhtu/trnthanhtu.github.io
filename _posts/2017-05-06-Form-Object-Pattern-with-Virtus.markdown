@@ -20,7 +20,7 @@ date:   2017-05-06 00:00:00
    
   Do đó việc sử dụng Form Object sẽ giữ cho C-M đơn giản.
 
-Trong bài viết này sẽ giới thiệu gem Virtus (Link: https://github.com/solnic/virtus).  
+Trong bài viết này sẽ giới thiệu gem Virtus ( [Link](https://github.com/solnic/virtus) ).  
 Vì gem sẽ hỗ trợ ta thực hiện form object pattern đơn giản và nhanh hơn (bản chất thì vẫn như vậy)
 
 ### 1.Bài toán 
@@ -149,11 +149,11 @@ Nếu nhiều form, ta sẽ tạo nhiều Form Object tương ứng để xử l
 
 
 ---
-Ngoài ra còn có gem Reform : https://github.com/apotonick/reform
+Ngoài ra còn có gem Reform : [Link] (https://github.com/apotonick/reform)
 
 ---
 Bài viết tham khảo
-- https://medium.com/@ryakh/rails-form-objects-84b6849c886e
-- http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
+- [https://medium.com/@ryakh/rails-form-objects-84b6849c886e](https://medium.com/@ryakh/rails-form-objects-84b6849c886e)
+- [http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/] (http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/)
 
 
