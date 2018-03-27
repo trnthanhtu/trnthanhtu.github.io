@@ -6,8 +6,8 @@ date:   2018-03-27 00:00:00
 TL,DR: Không nên sử dụng theme sb-admin boostrat bằng cách include các thư viện thông thường mà nên sử dụng bower (etc) để  quản lý.
 
 ##### 1.Setup rails app
-- Sử dụng gem bower_rails
-Link: https://github.com/rharriso/bower-rails
+- Sử dụng gem bower_rails  
+Link Document: [https://github.com/rharriso/bower-rails](https://github.com/rharriso/bower-rails)
 
 - Init config
 ```
