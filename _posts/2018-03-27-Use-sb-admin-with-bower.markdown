@@ -16,8 +16,8 @@ Link Document: [https://github.com/rharriso/bower-rails](https://github.com/rhar
 
 ##### 2.Apply sb-admin
 
-- Config bower
- Xem các thư viện mà sb-admin cần trong file bower.json sau đó chỉnh sửa file `Bowerfile` tương ứng.
+- Config bower  
+ Xem các thư viện mà sb-admin cần trong file bower.json sau đó chỉnh sửa file `Bowerfile` tương ứng.  
 *Example:*
 ```
   # Bowerfile
