@@ -1,11 +1,11 @@
 name: Tutt-Home
-description: They are nothing before me...
+description: They are nothing before me
 meta_description: "Viết những gì mình thích"
 
 markdown: kramdown
 highlighter: rouge
 logo: false
-paginate: 15
+paginate: 7
 baseurl: /
 domain_name: 'https://trnthanhtu.github.io'
 gems: [jekyll-paginate]
