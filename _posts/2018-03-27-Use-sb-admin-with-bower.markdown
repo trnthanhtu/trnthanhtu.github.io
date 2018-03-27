@@ -3,11 +3,9 @@ layout: post
 title:  "Cách tích hợp sb-admin-2 vào dự án Rails"
 date:   2018-03-27 00:00:00
 ---
-```
-TL,DR: Không nên sử dụng theme sb-admin boostrat bằng cách include các thư viện thông thường mà nên sử dụng bower (etc) để quản lý
-```
+TL,DR: Không nên sử dụng theme sb-admin boostrat bằng cách include các thư viện thông thường mà nên sử dụng bower (etc) để 
 
-#####1.Setup rails app
+##### 1.Setup rails app
 - Sử dụng gem bower_rails
 Link: https://github.com/rharriso/bower-rails
 
@@ -16,7 +14,7 @@ Link: https://github.com/rharriso/bower-rails
   rails g bower_rails:initialize
 ```
 
-#####2.Apply sb-admin
+##### 2.Apply sb-admin
 
 - Config bower
  Xem các thư viện mà sb-admin cần trong file bower.json sau đó chỉnh sửa file `Bowerfile` tương ứng.
@@ -65,29 +63,28 @@ Link: https://github.com/rharriso/bower-rails
      * copy file sb-admin-2.js vào thư mục assets/admin/sb-admin-2.js
      * Tạo file admin.js
 
-```
-/*
-//= require turbolinks
-//= require jquery
-//= require rails-ujs
-//= require bootstrap/dist/js/bootstrap
-//= require metisMenu
-//= require_tree ./admin/
-*/
-```
+        ```
+        /*
+        //= require turbolinks
+        //= require jquery
+        //= require rails-ujs
+        //= require bootstrap/dist/js/bootstrap
+        //= require metisMenu
+        //= require_tree ./admin/
+        */
+        ```
 
 + Include new path `js/css` vào `assets`
 
-```
- Rails.application.config.assets.precompile += %w( admin.css admin.js )
-```
+  ```
+   Rails.application.config.assets.precompile += %w( admin.css admin.js )
+  ```
 
-#####3.Chạy precomplie
+##### 3.Chạy precomplie
 
  Khi chạy precompie sẽ có những lỗi phát sinh và cách sửa như sau:
 
 **a. Không nhận được bootstrap**
-
 
     Sprockets::FileNotFound: couldn't find file 'bootstrap' with type 'text/css'
 
@@ -101,7 +98,7 @@ Fix:
 
  - Đổi `admin.css` -> `admin.css.sass`
 
-**b.Font-awesome ko sử dụng được**
+**b.Font-awesome ko sử dụng được**  
  **Nguyên nhân**: Không precomplie được những file với extension khác
 
 Fix:
@@ -113,21 +110,21 @@ Fix:
 
  - import font-face font-awesome
 
-```
-# app/assets/stylesheets/admin.css.scss
-@font-face {
-    font-family: 'FontAwesome';
-    src: font-url('font-awesome/fonts/fontawesome-webfont.eot?v=4.0.3');
-    src: font-url('font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'),
-    font-url('font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'),
-    font-url('font-awesome/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'),
-    font-url('font-awesome/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-```
+  ```
+  # app/assets/stylesheets/admin.css.scss
+  @font-face {
+      font-family: 'FontAwesome';
+      src: font-url('font-awesome/fonts/fontawesome-webfont.eot?v=4.0.3');
+      src: font-url('font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'),
+      font-url('font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'),
+      font-url('font-awesome/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'),
+      font-url('font-awesome/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+  ```
 
-#####4.Deploy với cap
+##### 4.Deploy với cap  
 Thêm config vào deploy.rb
 
 ```
@@ -145,7 +142,7 @@ Thêm config vào deploy.rb
          end
        end
     before 'deploy:compile_assets', 'bower:install'
-    ```
+```
 option : `--allow-root` <-- cấp quyền install bower lib vào system
 
 **Lưu ý: Phải cài package bower trên sever **
