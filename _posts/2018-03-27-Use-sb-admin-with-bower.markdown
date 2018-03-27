@@ -145,4 +145,4 @@ Thêm config vào deploy.rb
 ```
 option : `--allow-root` <-- cấp quyền install bower lib vào system
 
-**Lưu ý: Phải cài package bower trên sever **
+**Lưu ý: Phải cài package bower trên sever**
