@@ -38,7 +38,7 @@ end
 
 describe "テストの説明文" do
   before do
-    travel_to Time.local(1994)
+    travel_to Time.local(xxxx)
   end
 
   after do
