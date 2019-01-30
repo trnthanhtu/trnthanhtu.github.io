@@ -5,9 +5,9 @@ date:   2019-01-29 00:00:00
 ---
 TL,DR:  gem Timecopの代わりにRailのTime Helperを使えます。「ActiveSupport::Testing::TimeHelpers」です。
 
-「ActiveSupport::Testing::TimeHelpers」をRailsのActiveSupportのライブラリーです。Rails4.1で開放した。  
+「ActiveSupport::Testing::TimeHelpers」はRailsのActiveSupportのライブラリーです。Rails4.1で開放した。  
 
-**Railプロジェクトで、Timecopの使う代わりに**:
+**Railプロジェクトで、Timecop代わりに**:
 ```
 #Gemfile ファイル
 group :test do
