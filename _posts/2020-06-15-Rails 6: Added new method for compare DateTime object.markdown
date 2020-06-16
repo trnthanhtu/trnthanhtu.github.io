@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rails 6: Use before? and after? instead of compare syntax"
-date:   2019-06-16 00:00:00
+date:   2019-06-15 00:00:00
 ---
   TL,DR:  With Rails 6, can be used two methods: before? and after? instead of  two systax" > "and "<" when compares Date, DateTime, Time object.  
    Rails 6で、オペレーターの代わりに「Date」や「DateTime」や「Time」オブジェクトなどを比較すろために使用する新しいメソッド「before?」と「after?」を追加された。
