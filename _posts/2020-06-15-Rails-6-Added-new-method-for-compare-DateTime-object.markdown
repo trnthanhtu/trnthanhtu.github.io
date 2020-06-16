@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Rails 6: Use before? and after? instead of compare syntax"
+title:  "Rails 6: Can be use before? and after? instead of compare operator"
 date:   2019-06-15 00:00:00
 ---
 
