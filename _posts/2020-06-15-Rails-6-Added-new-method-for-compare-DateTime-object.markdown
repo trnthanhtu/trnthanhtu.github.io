@@ -53,4 +53,4 @@ Date.tomorrow.after? Date.today
 => true
 ```
 
-Reference (参照):　https://github.com/rails/rails/pull/32185 
+Reference (参照):　[https://github.com/rails/rails/pull/32185](https://github.com/rails/rails/pull/32185)
